@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .calculator {
+            height: 100vh;
+            width: 100%;
+            background: #a0d7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content {
+            background: #17181a;
+            padding: 26px;
+            border-radius: 20px;
+            box-shadow: 0px 80px 50px -30px rgba(41, 168, 255, 0.2);
+        }
+
+        input {
+            width: 330px;
+            padding: 25px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+            font-size: 45px;
+            background: #3a3939;
+            text-align: right;
+            color: #ffffff;
+        }
+
+        input::placeholder {
+            color: white;
+        }
+
+        button {
+            border: none;
+            outline: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            background: #303136;
+            font-size: 21px;
+            font-weight: 600;
+            color: #29a8ff;
+            margin: 12px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            color: #ffffff;
+            background-color: #67696b;
+        }
+
+        .equal {
+            width: 144px;
+            color: #fff;
+            background: #1991ff;
+            font-weight: 700;
+        }
+
+        .equal:hover {
+            background-color: #2372a8;
+        }
+
+        .other-clr {
+            background: #616161;
+            color: #a5a5a5;
+            font-weight: 400;
+        }
+
+        .other-clr:hover {
+            color: #ffffff;
+            background-color: #484949;
+        }
+
+        .main {
+            background: #005db2;
+            color: #000000;
+        }
+
+        .main:hover {
+            color: #ffffff;
+            background-color: #29a8ff;
+        }
+
+    </style>
+
+
+</head>
+<body>
+    <section class="Calculator">
+        <div class="calculator">
+            <div class="content">
+                <input type="text" placeholder="0" id="inputBox">
+
+                <div>
+                    <button class="other-clr">AC</button>
+                    <button class="other-clr">DEL</button>
+                    <button class="main">%</button>
+                    <button class="main">/</button>
+                </div>
+
+                <div>
+                    <button>7</button>
+                    <button>8</button>
+                    <button>9</button>
+                    <button class="main">*</button>
+                </div>
+
+                <div>
+                    <button>4</button>
+                    <button>5</button>
+                    <button>6</button>
+                    <button class="main">-</button>
+                </div>
+
+                <div>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button class="main">+</button>
+                </div>
+
+                <div>
+                    <button>0</button>
+                    <button>.</button>
+                    <button class="equal">=</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let input = document.getElementById('inputBox');
+        let buttons = document.querySelectorAll('button');
+
+        let string = "";
+        let arr = Array.from(buttons);
+        arr.forEach(buttons => {
+            buttons.addEventListener('click', (e) => {
+                if(e.target.innerHTML == '=') {
+                    string = eval(string);
+                    input.value = string;
+                }
+
+                else if(e.target.innerHTML == 'AC') {
+                    string = "";
+                    input.value = string;
+                }
+
+                else if(e.target.innerHTML == 'DEL') {
+                    string = string.substring(0, string.length-1);
+                    input.value = string;
+                }
+
+                else {
+                    string += e.target.innerHTML;
+                    input.value = string;
+                }
+            })
+        })
+    </script>
+</body>
+</html>
